@@ -1,8 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Download, Mail } from "lucide-react";
 import profileImage from "@/assets/profile.jpeg";
+import { useTypingEffect } from "@/hooks/useTypingEffect";
+
+const roles = [
+  "AI Engineer",
+  "ML Enthusiast", 
+  "Deep Learning Developer",
+  "Problem Solver",
+  "Tech Innovator",
+];
 
 const HeroSection = () => {
+  const { currentText } = useTypingEffect({
+    words: roles,
+    typingSpeed: 80,
+    deletingSpeed: 40,
+    pauseDuration: 2500,
+  });
+
   const handleScroll = (href: string) => {
     const element = document.querySelector(href);
     element?.scrollIntoView({ behavior: "smooth" });
@@ -31,6 +47,17 @@ const HeroSection = () => {
                 Krutarth Gosavi
               </span>
             </h1>
+            
+            {/* Typing Animation */}
+            <div className="h-12 md:h-14 mb-6 animate-fade-in-up delay-150">
+              <p className="text-xl md:text-2xl lg:text-3xl font-syne font-medium">
+                <span className="text-muted-foreground">I'm a </span>
+                <span className="text-primary">
+                  {currentText}
+                </span>
+                <span className="inline-block w-0.5 h-6 md:h-8 bg-primary ml-1 animate-pulse" />
+              </p>
+            </div>
             
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-in-up delay-200">
               Passionate about building intelligent systems that bridge the gap between 
