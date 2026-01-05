@@ -1,4 +1,5 @@
 import { Brain, Code, Cog, Database, LineChart, Sparkles } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const skills = [
   {
@@ -52,51 +53,51 @@ const SkillsSection = () => {
       <div className="absolute top-0 right-0 w-80 h-80 bg-accent/10 rounded-full blur-[120px]" />
       
       <div className="relative z-10">
-        <div className="text-center mb-16">
-          <span className="text-primary text-sm font-medium tracking-wider uppercase">
-            Technical Skills
-          </span>
-          <h2 className="section-title gradient-text mt-2">
-            My Expertise
-          </h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            A comprehensive toolkit for building intelligent systems and solving complex problems
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <span className="text-primary text-sm font-medium tracking-wider uppercase">
+              Technical Skills
+            </span>
+            <h2 className="section-title gradient-text mt-2">
+              My Expertise
+            </h2>
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+              A comprehensive toolkit for building intelligent systems and solving complex problems
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.map((skill, index) => (
-            <div
-              key={skill.name}
-              className="glass-card p-6 rounded-xl animated-border group hover:scale-105 transition-all duration-300"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${skill.color} p-0.5`}>
-                  <div className="w-full h-full bg-card rounded-xl flex items-center justify-center">
-                    <skill.icon className="w-7 h-7 text-foreground" />
+            <ScrollReveal key={skill.name} direction="up" delay={index * 100}>
+              <div className="glass-card p-6 rounded-xl animated-border group hover:scale-105 transition-all duration-300 h-full">
+                <div className="flex items-start justify-between mb-4">
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${skill.color} p-0.5`}>
+                    <div className="w-full h-full bg-card rounded-xl flex items-center justify-center">
+                      <skill.icon className="w-7 h-7 text-foreground" />
+                    </div>
                   </div>
+                  <span className="text-2xl font-bold font-syne text-foreground">
+                    {skill.level}%
+                  </span>
                 </div>
-                <span className="text-2xl font-bold font-syne text-foreground">
-                  {skill.level}%
-                </span>
+                
+                <h3 className="font-syne font-semibold text-lg text-foreground mb-2">
+                  {skill.name}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {skill.description}
+                </p>
+                
+                {/* Progress Bar */}
+                <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                  <div
+                    className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000`}
+                    style={{ width: `${skill.level}%` }}
+                  />
+                </div>
               </div>
-              
-              <h3 className="font-syne font-semibold text-lg text-foreground mb-2">
-                {skill.name}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                {skill.description}
-              </p>
-              
-              {/* Progress Bar */}
-              <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                <div
-                  className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000`}
-                  style={{ width: `${skill.level}%` }}
-                />
-              </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
